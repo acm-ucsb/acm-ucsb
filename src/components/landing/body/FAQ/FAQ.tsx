@@ -1,5 +1,4 @@
 import React from "react";
-import { getFAQData } from "@/apis/getSheetsData";
 import {
   Accordion,
   AccordionSummary,
@@ -9,9 +8,10 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { convertTextToLinks } from "@/util/convertTextToLinks";
+import { FAQType } from "@public/data/faq";
 
-const FAQ = async () => {
-  const faq = await getFAQData();
+const FAQ = (props: { faq: FAQType[] }) => {
+  const { faq } = props;
 
   return (
     <section id="faq">
@@ -29,7 +29,7 @@ const FAQ = async () => {
           Frequently Asked Questions
         </Typography>
 
-        {faq.map((item, index) => (
+        {faq.map((item: FAQType, index: number) => (
           <Accordion
             key={index}
             sx={{
